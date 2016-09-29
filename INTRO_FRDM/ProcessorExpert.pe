@@ -3,7 +3,7 @@
   <Header>
     <Name>INTRO_FRDM_Master</Name>
     <SavedBy>Erich Styger Local</SavedBy>
-    <ModificationStamp>3</ModificationStamp>
+    <ModificationStamp>4</ModificationStamp>
     <Date>2016-09-20</Date>
     <IDE>Eclipse IDE</IDE>
     <PEversion>1.12.2.RT7_b1550-0615</PEversion>
@@ -4593,7 +4593,7 @@
         <ItemSymbol>_Pin</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>TSI0_CH11/PTB18/TPM2_CH0</Value>
+        <Value>TSI0_CH12/PTB19/TPM2_CH1</Value>
         <SharedPrphMode>false</SharedPrphMode>
       </ItemState>
       <ItemState>
@@ -4639,7 +4639,7 @@
               <ItemSymbol>_Pin</ItemSymbol>
               <ReadOnly>false</ReadOnly>
               <UserReadOnly>false</UserReadOnly>
-              <Value>TSI0_CH11/PTB18/TPM2_CH0</Value>
+              <Value>TSI0_CH12/PTB19/TPM2_CH1</Value>
               <SharedPrphMode>false</SharedPrphMode>
             </ItemState>
             <ItemState>

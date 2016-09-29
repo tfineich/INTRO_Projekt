@@ -51,7 +51,9 @@ int main(void)
   /*** End of Processor Expert internal initialization.                    ***/
 
   /* Write your code here */
-  /* For example: for(;;) { } */
+  Bit1_SetDir(true);
+  Bit1_ClrVal();
+
 
   /*** Don't write any code pass this line, or it will be deleted during code generation. ***/
   /*** RTOS startup code. Macro PEX_RTOS_START is defined by the RTOS component. DON'T MODIFY THIS CODE!!! ***/
@@ -60,10 +62,7 @@ int main(void)
   #endif
   /*** End of RTOS startup code.  ***/
   /*** Processor Expert end of main routine. DON'T MODIFY THIS CODE!!! ***/
-	  Bit1_SetDir(true);
-   for(;;){
-	  Bit1_ClrVal();
-  }
+  for(;;){}
   /*** Processor Expert end of main routine. DON'T WRITE CODE BELOW!!! ***/
 } /*** End of main routine. DO NOT MODIFY THIS TEXT!!! ***/
 
