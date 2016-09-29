@@ -33,6 +33,9 @@
 #include "PE_Error.h"
 #include "PE_Const.h"
 #include "IO_Map.h"
+#include "KSDK1.h"
+#include "Bit1.h"
+#include "BitIoLdd1.h"
 
 #ifdef __cplusplus
 extern "C" {
