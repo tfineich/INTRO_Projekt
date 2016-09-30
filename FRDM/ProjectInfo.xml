@@ -50,21 +50,34 @@
   </PATHS>
   <FILES>
     <GeneratedCs>
+      <PathName>C:\Users\Kilian\Schule\INTRO\git\Team_Projekt\FRDM\Generated_Code\CS1.c</PathName>
       <PathName>C:\Users\Kilian\Schule\INTRO\git\Team_Projekt\FRDM\Generated_Code\Cpu.c</PathName>
+      <PathName>C:\Users\Kilian\Schule\INTRO\git\Team_Projekt\FRDM\Generated_Code\HF1.c</PathName>
+      <PathName>C:\Users\Kilian\Schule\INTRO\git\Team_Projekt\FRDM\Generated_Code\KIN1.c</PathName>
+      <PathName>C:\Users\Kilian\Schule\INTRO\git\Team_Projekt\FRDM\Generated_Code\KSDK1.c</PathName>
       <PathName>C:\Users\Kilian\Schule\INTRO\git\Team_Projekt\FRDM\Generated_Code\PE_LDD.c</PathName>
+      <PathName>C:\Users\Kilian\Schule\INTRO\git\Team_Projekt\FRDM\Generated_Code\UTIL1.c</PathName>
       <PathName>C:\Users\Kilian\Schule\INTRO\git\Team_Projekt\FRDM\Generated_Code\Vectors.c</PathName>
+      <PathName>C:\Users\Kilian\Schule\INTRO\git\Team_Projekt\FRDM\Generated_Code\WAIT1.c</PathName>
       <PathName>C:\Users\Kilian\Schule\INTRO\git\Team_Projekt\FRDM\Project_Settings\Startup_Code\startup.c</PathName>
       <PathName>C:\Users\Kilian\Schule\INTRO\git\Team_Projekt\FRDM\Sources\Events.c</PathName>
       <PathName>C:\Users\Kilian\Schule\INTRO\git\Team_Projekt\FRDM\Sources\main.c</PathName>
     </GeneratedCs>
     <GeneratedHs>
+      <PathName>C:\Users\Kilian\Schule\INTRO\git\Team_Projekt\FRDM\Generated_Code\CS1.h</PathName>
       <PathName>C:\Users\Kilian\Schule\INTRO\git\Team_Projekt\FRDM\Generated_Code\Cpu.h</PathName>
+      <PathName>C:\Users\Kilian\Schule\INTRO\git\Team_Projekt\FRDM\Generated_Code\HF1.h</PathName>
       <PathName>C:\Users\Kilian\Schule\INTRO\git\Team_Projekt\FRDM\Generated_Code\IO_Map.h</PathName>
+      <PathName>C:\Users\Kilian\Schule\INTRO\git\Team_Projekt\FRDM\Generated_Code\KIN1.h</PathName>
+      <PathName>C:\Users\Kilian\Schule\INTRO\git\Team_Projekt\FRDM\Generated_Code\KSDK1.h</PathName>
       <PathName>C:\Users\Kilian\Schule\INTRO\git\Team_Projekt\FRDM\Generated_Code\PE_Const.h</PathName>
       <PathName>C:\Users\Kilian\Schule\INTRO\git\Team_Projekt\FRDM\Generated_Code\PE_Error.h</PathName>
       <PathName>C:\Users\Kilian\Schule\INTRO\git\Team_Projekt\FRDM\Generated_Code\PE_LDD.h</PathName>
       <PathName>C:\Users\Kilian\Schule\INTRO\git\Team_Projekt\FRDM\Generated_Code\PE_Types.h</PathName>
+      <PathName>C:\Users\Kilian\Schule\INTRO\git\Team_Projekt\FRDM\Generated_Code\UTIL1.h</PathName>
+      <PathName>C:\Users\Kilian\Schule\INTRO\git\Team_Projekt\FRDM\Generated_Code\WAIT1.h</PathName>
       <PathName>C:\Users\Kilian\Schule\INTRO\git\Team_Projekt\FRDM\Sources\Events.h</PathName>
+      <PathName>C:\Users\Kilian\Schule\INTRO\git\Team_Projekt\FRDM\Sources\Platform_Local.h</PathName>
       <PathName>C:\Users\Kilian\Schule\INTRO\git\Team_Projekt\FRDM\Static_Code\IO_Map\MKL25Z4.h</PathName>
       <PathName>C:\Users\Kilian\Schule\INTRO\git\Team_Projekt\FRDM\Static_Code\PDD\ADC_PDD.h</PathName>
       <PathName>C:\Users\Kilian\Schule\INTRO\git\Team_Projekt\FRDM\Static_Code\PDD\CMP_PDD.h</PathName>

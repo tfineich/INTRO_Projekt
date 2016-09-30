@@ -8,7 +8,7 @@
 **     Repository  : Kinetis
 **     Datasheet   : KL25P80M48SF0RM, Rev.3, Sep 2012
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2016-09-30, 13:14, # CodeGen: 0
+**     Date/Time   : 2016-09-30, 13:23, # CodeGen: 1
 **     Abstract    :
 **
 **     Settings    :
@@ -61,9 +61,7 @@
 **          Initialization priority                        : interrupts enabled
 **          Watchdog disable                               : yes
 **          Internal peripherals                           : 
-**            NMI pin                                      : Enabled
-**              NMI Pin                                    : TSI0_CH5/PTA4/I2C1_SDA/TPM0_CH1/NMI_b
-**              NMI Pin signal                             : 
+**            NMI pin                                      : Disabled
 **            Reset control                                : Enabled
 **              Reset pin                                  : PTA20/RESET_b
 **              Reset pin signal                           : 
@@ -131,7 +129,7 @@
 **                    Protection region 31                 : Unprotected
 **              Peripheral settings                        : 
 **                Reset pin function                       : Enabled
-**                NMI function                             : Enabled
+**                NMI function                             : Disabled
 **                FLASH initialization speed               : Fast
 **                Clock dividers settings                  : Fast clock boot
 **            MCM settings                                 : Disabled
@@ -243,6 +241,12 @@
 /* MODULE Cpu. */
 
 /* {Default RTOS Adapter} No RTOS includes */
+#include "WAIT1.h"
+#include "UTIL1.h"
+#include "KSDK1.h"
+#include "HF1.h"
+#include "CS1.h"
+#include "KIN1.h"
 #include "PE_Types.h"
 #include "PE_Error.h"
 #include "PE_Const.h"
@@ -371,12 +375,6 @@ void PE_low_level_init(void)
     PEX_RTOS_INIT();                   /* Initialization of the selected RTOS. Macro is defined by the RTOS component. */
   #endif
       /* Initialization of the SIM module */
-  /* PORTA_PCR4: ISF=0,MUX=7 */
-  PORTA_PCR4 = (uint32_t)((PORTA_PCR4 & (uint32_t)~(uint32_t)(
-                PORT_PCR_ISF_MASK
-               )) | (uint32_t)(
-                PORT_PCR_MUX(0x07)
-               ));
         /* Initialization of the RCM module */
   /* RCM_RPFW: RSTFLTSEL=0 */
   RCM_RPFW &= (uint8_t)~(uint8_t)(RCM_RPFW_RSTFLTSEL(0x1F));
@@ -419,6 +417,13 @@ void PE_low_level_init(void)
                 ));
   /* NVIC_IPR1: PRI_6=0 */
   NVIC_IPR1 &= (uint32_t)~(uint32_t)(NVIC_IP_PRI_6(0xFF));
+  /* ### KinetisSDK "KSDK1" init code ... */
+  /* Write code here ... */
+  /* ### HardFault "HF1" init code ... */
+  /* Write code here ... */
+  /* ### CriticalSection "CS1" init code ... */
+  /* ### KinetisTools "KIN1" init code ... */
+  /* Write code here ... */
   __EI();
 }
   /* Flash configuration field */
@@ -449,8 +454,8 @@ void PE_low_level_init(void)
     0xFFU,
    /* NV_FSEC: KEYEN=1,MEEN=3,FSLACC=3,SEC=2 */
     0x7EU,
-   /* NV_FOPT: ??=1,??=1,FAST_INIT=1,LPBOOT1=1,RESET_PIN_CFG=1,NMI_DIS=1,??=1,LPBOOT0=1 */
-    0xFFU,
+   /* NV_FOPT: ??=1,??=1,FAST_INIT=1,LPBOOT1=1,RESET_PIN_CFG=1,NMI_DIS=0,??=1,LPBOOT0=1 */
+    0xFBU,
     0xFFU,
     0xFFU
   };
