@@ -760,6 +760,7 @@
       <OnInterrupt_Selected>1</OnInterrupt_Selected>
       <OnInterrupt_Name>EInt1_OnInterrupt</OnInterrupt_Name>
       <OnInterrupt_Priority>interrupts disabled</OnInterrupt_Priority>
+      <ISR_IntISRHandle />
       <GenSmartUserChangesDetected_Header>false</GenSmartUserChangesDetected_Header>
       <GenSmartUserChangesDetected_Code>false</GenSmartUserChangesDetected_Code>
       <GenSmartUserChangesDetected_Asembl>false</GenSmartUserChangesDetected_Asembl>
@@ -905,6 +906,10 @@
       <OnRxActiveEdge_Selected>1</OnRxActiveEdge_Selected>
       <OnRxActiveEdge_Name>AS2_OnRxActiveEdge</OnRxActiveEdge_Name>
       <OnRxActiveEdge_Priority>interrupts disabled</OnRxActiveEdge_Priority>
+      <ISR_InpIntISRHandle />
+      <ISR_OutIntISRHandle />
+      <ISR_ErrIntISRHandle />
+      <ISR_IdleIntISRHandle />
       <GenSmartUserChangesDetected_Header>false</GenSmartUserChangesDetected_Header>
       <GenSmartUserChangesDetected_Code>false</GenSmartUserChangesDetected_Code>
       <GenSmartUserChangesDetected_Asembl>false</GenSmartUserChangesDetected_Asembl>
@@ -1202,6 +1207,10 @@
         <OnRxActiveEdge_Selected>1</OnRxActiveEdge_Selected>
         <OnRxActiveEdge_Name>AS2_OnRxActiveEdge</OnRxActiveEdge_Name>
         <OnRxActiveEdge_Priority>interrupts disabled</OnRxActiveEdge_Priority>
+        <ISR_InpIntISRHandle />
+        <ISR_OutIntISRHandle />
+        <ISR_ErrIntISRHandle />
+        <ISR_IdleIntISRHandle />
         <GenSmartUserChangesDetected_Header>false</GenSmartUserChangesDetected_Header>
         <GenSmartUserChangesDetected_Code>false</GenSmartUserChangesDetected_Code>
         <GenSmartUserChangesDetected_Asembl>false</GenSmartUserChangesDetected_Asembl>
@@ -1270,6 +1279,8 @@
     <OnChannel7_Selected>1</OnChannel7_Selected>
     <OnChannel7_Name>TU1_OnChannel7</OnChannel7_Name>
     <OnChannel7_Priority>interrupts disabled</OnChannel7_Priority>
+    <ISR_CounterIntISRHandle />
+    <ISR_ModuloIntISRHandle />
     <GenSmartUserChangesDetected_Header>false</GenSmartUserChangesDetected_Header>
     <GenSmartUserChangesDetected_Code>false</GenSmartUserChangesDetected_Code>
     <GenSmartUserChangesDetected_Asembl>false</GenSmartUserChangesDetected_Asembl>
@@ -1682,6 +1693,10 @@
         <OnRxActiveEdge_Selected>1</OnRxActiveEdge_Selected>
         <OnRxActiveEdge_Name>AS2_OnRxActiveEdge</OnRxActiveEdge_Name>
         <OnRxActiveEdge_Priority>interrupts disabled</OnRxActiveEdge_Priority>
+        <ISR_InpIntISRHandle />
+        <ISR_OutIntISRHandle />
+        <ISR_ErrIntISRHandle />
+        <ISR_IdleIntISRHandle />
         <GenSmartUserChangesDetected_Header>false</GenSmartUserChangesDetected_Header>
         <GenSmartUserChangesDetected_Code>false</GenSmartUserChangesDetected_Code>
         <GenSmartUserChangesDetected_Asembl>false</GenSmartUserChangesDetected_Asembl>
@@ -1862,6 +1877,7 @@
       <AsemblAge>-1</AsemblAge>
       <GenNumMethods>0</GenNumMethods>
       <GenNumEvents>0</GenNumEvents>
+      <ISR_Handle />
       <GenSmartUserChangesDetected_Header>false</GenSmartUserChangesDetected_Header>
       <GenSmartUserChangesDetected_Code>false</GenSmartUserChangesDetected_Code>
       <GenSmartUserChangesDetected_Asembl>false</GenSmartUserChangesDetected_Asembl>
@@ -1929,6 +1945,8 @@
     <OnChannel7_Selected>1</OnChannel7_Selected>
     <OnChannel7_Name>TU1_OnChannel7</OnChannel7_Name>
     <OnChannel7_Priority>interrupts disabled</OnChannel7_Priority>
+    <ISR_CounterIntISRHandle />
+    <ISR_ModuloIntISRHandle />
     <GenSmartUserChangesDetected_Header>false</GenSmartUserChangesDetected_Header>
     <GenSmartUserChangesDetected_Code>false</GenSmartUserChangesDetected_Code>
     <GenSmartUserChangesDetected_Asembl>false</GenSmartUserChangesDetected_Asembl>
@@ -2225,6 +2243,8 @@
     <OnChannel7_Selected>1</OnChannel7_Selected>
     <OnChannel7_Name>TU2_OnChannel7</OnChannel7_Name>
     <OnChannel7_Priority>interrupts disabled</OnChannel7_Priority>
+    <ISR_CounterIntISRHandle />
+    <ISR_ModuloIntISRHandle />
     <GenSmartUserChangesDetected_Header>false</GenSmartUserChangesDetected_Header>
     <GenSmartUserChangesDetected_Code>false</GenSmartUserChangesDetected_Code>
     <GenSmartUserChangesDetected_Asembl>false</GenSmartUserChangesDetected_Asembl>
@@ -2723,7 +2743,7 @@
         <GenExtraFilesCount>0</GenExtraFilesCount>
       </InhrCompID_81>
     </InhrCompID_79>
-    <InhrCompID_287>
+    <InhrCompID_292>
       <Generated>false</Generated>
       <GenCompName />
       <GenComponentVersion>??.???</GenComponentVersion>
@@ -2749,8 +2769,8 @@
       <GenSmartUserChangesDetected_Asembl>false</GenSmartUserChangesDetected_Asembl>
       <GenMethodPos>0</GenMethodPos>
       <GenExtraFilesCount>0</GenExtraFilesCount>
-    </InhrCompID_287>
-    <InhrCompID_288>
+    </InhrCompID_292>
+    <InhrCompID_293>
       <Generated>false</Generated>
       <GenCompName />
       <GenComponentVersion>??.???</GenComponentVersion>
@@ -2777,7 +2797,7 @@
       <GenSmartUserChangesDetected_Asembl>false</GenSmartUserChangesDetected_Asembl>
       <GenMethodPos>0</GenMethodPos>
       <GenExtraFilesCount>0</GenExtraFilesCount>
-    </InhrCompID_288>
+    </InhrCompID_293>
   </ComponentID_77>
   <ComponentID_84>
     <Generated>false</Generated>
@@ -2923,7 +2943,7 @@
         <GenExtraFilesCount>0</GenExtraFilesCount>
       </InhrCompID_88>
     </InhrCompID_86>
-    <InhrCompID_289>
+    <InhrCompID_294>
       <Generated>false</Generated>
       <GenCompName />
       <GenComponentVersion>??.???</GenComponentVersion>
@@ -2949,8 +2969,8 @@
       <GenSmartUserChangesDetected_Asembl>false</GenSmartUserChangesDetected_Asembl>
       <GenMethodPos>0</GenMethodPos>
       <GenExtraFilesCount>0</GenExtraFilesCount>
-    </InhrCompID_289>
-    <InhrCompID_290>
+    </InhrCompID_294>
+    <InhrCompID_295>
       <Generated>false</Generated>
       <GenCompName />
       <GenComponentVersion>??.???</GenComponentVersion>
@@ -2977,7 +2997,7 @@
       <GenSmartUserChangesDetected_Asembl>false</GenSmartUserChangesDetected_Asembl>
       <GenMethodPos>0</GenMethodPos>
       <GenExtraFilesCount>0</GenExtraFilesCount>
-    </InhrCompID_290>
+    </InhrCompID_295>
   </ComponentID_84>
   <ComponentID_61>
     <Generated>false</Generated>
@@ -3039,6 +3059,14 @@
     <OnChannel7_Selected>1</OnChannel7_Selected>
     <OnChannel7_Name>TU2_OnChannel7</OnChannel7_Name>
     <OnChannel7_Priority>interrupts disabled</OnChannel7_Priority>
+    <ISR_CounterIntISRHandle />
+    <ISR_ModuloIntISRHandle />
+    <ISR_ChannelCmpIntISRHandle0 />
+    <ISR_ChannelCapIntISRHandle0 />
+    <ISR_ChannelCmpIntISRHandle1 />
+    <ISR_ChannelCapIntISRHandle1 />
+    <ISR_ChannelCmpIntISRHandle2 />
+    <ISR_ChannelCapIntISRHandle2 />
     <GenSmartUserChangesDetected_Header>false</GenSmartUserChangesDetected_Header>
     <GenSmartUserChangesDetected_Code>false</GenSmartUserChangesDetected_Code>
     <GenSmartUserChangesDetected_Asembl>false</GenSmartUserChangesDetected_Asembl>
@@ -3454,6 +3482,8 @@
     <OnChannel7_Selected>1</OnChannel7_Selected>
     <OnChannel7_Name>TU2_OnChannel7</OnChannel7_Name>
     <OnChannel7_Priority>interrupts disabled</OnChannel7_Priority>
+    <ISR_CounterIntISRHandle />
+    <ISR_ModuloIntISRHandle />
     <GenSmartUserChangesDetected_Header>false</GenSmartUserChangesDetected_Header>
     <GenSmartUserChangesDetected_Code>false</GenSmartUserChangesDetected_Code>
     <GenSmartUserChangesDetected_Asembl>false</GenSmartUserChangesDetected_Asembl>
@@ -3710,6 +3740,7 @@
         <OnInterrupt_Selected>1</OnInterrupt_Selected>
         <OnInterrupt_Name>EInt1_OnInterrupt</OnInterrupt_Name>
         <OnInterrupt_Priority>interrupts disabled</OnInterrupt_Priority>
+        <ISR_IntISRHandle />
         <GenSmartUserChangesDetected_Header>false</GenSmartUserChangesDetected_Header>
         <GenSmartUserChangesDetected_Code>false</GenSmartUserChangesDetected_Code>
         <GenSmartUserChangesDetected_Asembl>false</GenSmartUserChangesDetected_Asembl>
@@ -3975,6 +4006,8 @@
       <OnError_Selected>1</OnError_Selected>
       <OnError_Name>SM2_OnError</OnError_Name>
       <OnError_Priority>interrupts disabled</OnError_Priority>
+      <ISR_InpIntISRHandle />
+      <ISR_OutIntISRHandle />
       <GenSmartUserChangesDetected_Header>false</GenSmartUserChangesDetected_Header>
       <GenSmartUserChangesDetected_Code>false</GenSmartUserChangesDetected_Code>
       <GenSmartUserChangesDetected_Asembl>false</GenSmartUserChangesDetected_Asembl>
@@ -4086,6 +4119,8 @@
       <OnError_Selected>1</OnError_Selected>
       <OnError_Name>FLASH1_OnError</OnError_Name>
       <OnError_Priority>interrupts disabled</OnError_Priority>
+      <ISR_InterruptVectorISRHandle />
+      <ISR_ReadCollisionErrorInterruptISRHandle />
       <GenSmartUserChangesDetected_Header>false</GenSmartUserChangesDetected_Header>
       <GenSmartUserChangesDetected_Code>false</GenSmartUserChangesDetected_Code>
       <GenSmartUserChangesDetected_Asembl>false</GenSmartUserChangesDetected_Asembl>
@@ -4241,7 +4276,7 @@
         <GenExtraFilesCount>0</GenExtraFilesCount>
       </InhrCompID_274>
     </InhrCompID_272>
-    <InhrCompID_291>
+    <InhrCompID_296>
       <Generated>false</Generated>
       <GenCompName />
       <GenComponentVersion>??.???</GenComponentVersion>
@@ -4262,7 +4297,7 @@
       <GenSmartUserChangesDetected_Asembl>false</GenSmartUserChangesDetected_Asembl>
       <GenMethodPos>0</GenMethodPos>
       <GenExtraFilesCount>0</GenExtraFilesCount>
-    </InhrCompID_291>
+    </InhrCompID_296>
     <InhrCompID_271>
       <Generated>false</Generated>
       <GenCompName />
