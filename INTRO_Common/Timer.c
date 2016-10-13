@@ -19,9 +19,16 @@
   #include "Tacho.h"
 #endif
 
+static uint8_t timeCount = 0;
+#define TIMER_1s	1000
+
 void TMR_OnInterrupt(void) {
   /* this one gets called from an interrupt!!!! */
   /*! \todo Add code for a blinking LED here */
+	if(++timeCount >= (TIMER_1s/TMR_TICK_MS)) {
+		EVNT_SetEvent(EVNT_LED_HEARTBEAT);
+		timeCount = 0;
+	}
 }
 
 void TMR_Init(void) {

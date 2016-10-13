@@ -45,7 +45,6 @@ void APP_EventHandler(EVNT_Handle event) {
     LED1_On(); /* just do something */
     WAIT1_Waitms(500);
     LED1_Off();
-    WAIT1_Waitms(500);
 #if PL_CONFIG_HAS_BUZZER
     BUZ_PlayTune(BUZ_TUNE_WELCOME);
 #endif
@@ -150,7 +149,6 @@ void APP_Start(void) {
     KEY_Scan();
 #endif
 #if PL_CONFIG_HAS_EVENTS
-    EVNT_SetEvent(EVNT_STARTUP);
     EVNT_HandleEvent(APP_EventHandler, TRUE);
 #endif
     WAIT1_Waitms(25);
