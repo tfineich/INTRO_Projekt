@@ -43,6 +43,9 @@ void APP_EventHandler(EVNT_Handle event) {
   switch(event) {
   case EVNT_STARTUP:
     LED1_On(); /* just do something */
+    WAIT1_Waitms(500);
+    LED1_Off();
+    WAIT1_Waitms(500);
 #if PL_CONFIG_HAS_BUZZER
     BUZ_PlayTune(BUZ_TUNE_WELCOME);
 #endif
@@ -56,7 +59,7 @@ void APP_EventHandler(EVNT_Handle event) {
   case EVNT_SW1_PRESSED:
     LED2_Neg();
     //CLS1_SendStr("SW1 pressed\r\n", CLS1_GetStdio()->stdOut);
-    SHELL_SendString("SW1 pressed\r\n");
+    //SHELL_SendString("SW1 pressed\r\n");
     #if PL_CONFIG_HAS_BUZZER
     BUZ_PlayTune(BUZ_TUNE_BUTTON);
     #endif
@@ -65,14 +68,16 @@ void APP_EventHandler(EVNT_Handle event) {
 #endif /* PL_CONFIG_HAS_KEYS */
 
     /* \todo extend handler as needed */
+  default:
+    break;
    } /* switch */
 }
 #endif /* PL_CONFIG_HAS_EVENTS */
 
 static const KIN1_UID RoboIDs[] = {
-  /* 0: L20, V2 */ {0x00,0x03,0x00,0x00,0x4E,0x45,0xB7,0x21,0x4E,0x45,0x32,0x15,0x30,0x02,0x00,0x13},
-  /* 1: L21, V2 */ {0x00,0x05,0x00,0x00,0x4E,0x45,0xB7,0x21,0x4E,0x45,0x32,0x15,0x30,0x02,0x00,0x13},
-  /* 2: L4, V1  */ {0x00,0x0B,0xFF,0xFF,0x4E,0x45,0xFF,0xFF,0x4E,0x45,0x27,0x99,0x10,0x02,0x00,0x24}, /* revert right motor */
+  /* 0: L20, V2 */ {{0x00,0x03,0x00,0x00,0x4E,0x45,0xB7,0x21,0x4E,0x45,0x32,0x15,0x30,0x02,0x00,0x13}},
+  /* 1: L21, V2 */ {{0x00,0x05,0x00,0x00,0x4E,0x45,0xB7,0x21,0x4E,0x45,0x32,0x15,0x30,0x02,0x00,0x13}},
+  /* 2: L4, V1  */ {{0x00,0x0B,0xFF,0xFF,0x4E,0x45,0xFF,0xFF,0x4E,0x45,0x27,0x99,0x10,0x02,0x00,0x24}}, /* revert right motor */
 };
 
 static void APP_AdoptToHardware(void) {
@@ -103,6 +108,25 @@ static void APP_AdoptToHardware(void) {
 #endif
 }
 
+#if 0
+static volatile int testVar;
+static void (*foo)(void) = 1;
+static volatile int var, var2;
+static int *p = 0;
+
+static void Critical(void) {
+  CS1_CriticalVariable()
+
+  var /= var2;
+  var = *p;
+  *p = 5;
+  CS1_EnterCritical();
+  testVar++;
+  foo();
+  CS1_ExitCritical();
+}
+#endif
+
 void APP_Start(void) {
 #if PL_CONFIG_HAS_RTOS
 #if configUSE_TRACE_HOOKS
@@ -114,23 +138,22 @@ void APP_Start(void) {
   EVNT_SetEvent(EVNT_STARTUP);
 #endif
 #if CLS1_DEFAULT_SERIAL
-  CLS1_SendStr("Hello World!\r\n", CLS1_GetStdio()->stdOut);
+  CLS1_SendStr((uint8_t*)"Hello World!\r\n", CLS1_GetStdio()->stdOut);
 #endif
   APP_AdoptToHardware();
 #if PL_CONFIG_HAS_RTOS
   vTaskStartScheduler(); /* start the RTOS, create the IDLE task and run my tasks (if any) */
   /* does usually not return! */
 #else
-  LED1_On();
-  LED2_On();
   for(;;) {
 #if PL_CONFIG_HAS_KEYS
     KEY_Scan();
 #endif
 #if PL_CONFIG_HAS_EVENTS
+    EVNT_SetEvent(EVNT_STARTUP);
     EVNT_HandleEvent(APP_EventHandler, TRUE);
 #endif
-    WAIT1_Waitms(25); /* just wait for some arbitrary time .... */
+    WAIT1_Waitms(25);
   }
 #endif
 }

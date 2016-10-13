@@ -47,7 +47,7 @@ void EVNT_ClearEvent(EVNT_Handle event) {
 
 bool EVNT_EventIsSet(EVNT_Handle event) {
   /* \todo Make it reentrant */
-	bool res;
+  bool res;
   CS1_CriticalVariable();
 
   CS1_EnterCritical();
