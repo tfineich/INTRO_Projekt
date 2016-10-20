@@ -70,8 +70,9 @@ void Cpu_OnNMIINT(void)
 */
 void TI1_OnInterrupt(void)
 {
-  //TMR_OnInterrupt();
-  TRG_AddTick();
+#if PL_CONFIG_HAS_TIMER
+	TMR_OnInterrupt();
+#endif
 }
 
 /* END Events */
