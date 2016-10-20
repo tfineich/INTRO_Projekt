@@ -56,9 +56,9 @@ void Cpu_OnNMIINT(void)
 
 /*
 ** ===================================================================
-**     Event       :  TI1_OnInterrupt (module Events)
+**     Event       :  QuadInt_OnInterrupt (module Events)
 **
-**     Component   :  TI1 [TimerInt]
+**     Component   :  QuadInt [TimerInt]
 **     Description :
 **         When a timer interrupt occurs this event is called (only
 **         when the component is enabled - <Enable> and the events are
@@ -68,7 +68,24 @@ void Cpu_OnNMIINT(void)
 **     Returns     : Nothing
 ** ===================================================================
 */
-void TI1_OnInterrupt(void)
+void QuadInt_OnInterrupt(void)
+{
+  /* Write your code here ... */
+}
+
+/*
+** ===================================================================
+**     Event       :  SW1_OnInterrupt (module Events)
+**
+**     Component   :  SW1 [ExtInt]
+**     Description :
+**         This event is called when an active signal edge/level has
+**         occurred.
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
+void SW1_OnInterrupt(void)
 {
   /* Write your code here ... */
 }
