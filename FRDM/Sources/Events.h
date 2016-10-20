@@ -33,6 +33,20 @@
 #include "PE_Error.h"
 #include "PE_Const.h"
 #include "IO_Map.h"
+#include "SW1.h"
+#include "BitIoLdd1.h"
+#include "SW2.h"
+#include "BitIoLdd2.h"
+#include "SW3.h"
+#include "BitIoLdd3.h"
+#include "SW4.h"
+#include "BitIoLdd4.h"
+#include "SW5.h"
+#include "BitIoLdd5.h"
+#include "SW6.h"
+#include "BitIoLdd6.h"
+#include "SW7.h"
+#include "BitIoLdd7.h"
 #include "LEDPin1.h"
 #include "BitIoLdd10.h"
 #include "LEDPin2.h"
@@ -42,6 +56,9 @@
 #include "TI1.h"
 #include "TimerIntLdd1.h"
 #include "TU1.h"
+#include "AS1.h"
+#include "ASerialLdd1.h"
+#include "CLS1.h"
 #include "WAIT1.h"
 #include "UTIL1.h"
 #include "KSDK1.h"
@@ -85,6 +102,7 @@ void Cpu_OnNMIINT(void);
 ** ===================================================================
 */
 void TI1_OnInterrupt(void);
+
 
 /* END Events */
 
