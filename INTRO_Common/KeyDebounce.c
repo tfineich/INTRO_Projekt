@@ -15,7 +15,7 @@
 #include "Event.h"
 
 /*!
- * \brief Returns the state of the keys. This directly reflects the value of the port
+ * \brief Returns the of the keys. This directly reflects the value of the port
  * \return Port bits
  */
 static DBNC_KeySet KEYDBNC_GetKeys(void) {
@@ -184,8 +184,8 @@ static void KEYDBNC_OnDebounceEvent(DBNC_EventKinds event, DBNC_KeySet keys) {
       break;
     case DBNC_EVENT_END:
       /*! \todo Implement what you have to do at the end of the debouncing. Check if you have to re-enable interrupts! */
-    #if PL_CONFIG_HAS_KBI
       KEY_EnableInterrupts();
+    #if PL_CONFIG_HAS_KBI
     #endif
       break;
   } /* switch */
@@ -213,7 +213,7 @@ void KEYDBNC_Process(void) {
    * And you will need to disable the keyboard interrupts too!
    */
   /*! \todo Only debounce if you are not debouncing already */
-  if (1) { /* a key is pressed and we are not debouncing */
+  if (KEYDBNC_FSMdata.state==DBNC_KEY_IDLE && KEYDBNC_GetKeys()!=0) { /* a key is pressed and we are not debouncing */
   #if PL_CONFIG_HAS_KBI
     KEY_DisableInterrupts(); /* disable interrupts for all keys */
   #endif
