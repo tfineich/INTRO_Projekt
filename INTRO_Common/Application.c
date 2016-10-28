@@ -51,7 +51,7 @@ void APP_EventHandler(EVNT_Handle event) {
 #endif
     break;
   case EVNT_LED_HEARTBEAT:
-    LED1_Neg();
+    //LED1_Neg();
     break;
 
 #if PL_CONFIG_HAS_KEYS

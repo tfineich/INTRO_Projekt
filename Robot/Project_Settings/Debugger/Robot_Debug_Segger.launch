@@ -30,7 +30,7 @@
 <stringAttribute key="ilg.gnuarmeclipse.debug.gdbjtag.jlink.gdbServerExecutable" value="${jlink_path}/${jlink_gdbserver}"/>
 <intAttribute key="ilg.gnuarmeclipse.debug.gdbjtag.jlink.gdbServerGdbPortNumber" value="2331"/>
 <stringAttribute key="ilg.gnuarmeclipse.debug.gdbjtag.jlink.gdbServerLog" value=""/>
-<stringAttribute key="ilg.gnuarmeclipse.debug.gdbjtag.jlink.gdbServerOther" value="-singlerun -strict -timeout 0"/>
+<stringAttribute key="ilg.gnuarmeclipse.debug.gdbjtag.jlink.gdbServerOther" value="-singlerun -strict -timeout 0 -rtos GDBServer/RTOSPlugin_FreeRTOS"/>
 <intAttribute key="ilg.gnuarmeclipse.debug.gdbjtag.jlink.gdbServerSwoPortNumber" value="2332"/>
 <intAttribute key="ilg.gnuarmeclipse.debug.gdbjtag.jlink.gdbServerTelnetPortNumber" value="2333"/>
 <stringAttribute key="ilg.gnuarmeclipse.debug.gdbjtag.jlink.interfaceSpeed" value="auto"/>
@@ -65,7 +65,7 @@
 <stringAttribute key="org.eclipse.cdt.launch.PROGRAM_NAME" value="Debug/Robot.elf"/>
 <stringAttribute key="org.eclipse.cdt.launch.PROJECT_ATTR" value="Robot"/>
 <booleanAttribute key="org.eclipse.cdt.launch.PROJECT_BUILD_CONFIG_AUTO_ATTR" value="false"/>
-<stringAttribute key="org.eclipse.cdt.launch.PROJECT_BUILD_CONFIG_ID_ATTR" value=""/>
+<stringAttribute key="org.eclipse.cdt.launch.PROJECT_BUILD_CONFIG_ID_ATTR" value="ilg.gnuarmeclipse.managedbuild.cross.config.elf.debug.583191899"/>
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
 <listEntry value="/Robot"/>
 </listAttribute>
