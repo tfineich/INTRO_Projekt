@@ -12,6 +12,7 @@
 #include "Event.h"
 #include "Keys.h"
 #include "Application.h"
+#include "KeyDebounce.h"
 
 static void AppTask(void* param) {
   const int *whichLED = (int*)param;
@@ -23,8 +24,19 @@ static void AppTask(void* param) {
     } else if (*whichLED==2) {
       LED2_Neg();
     }
+
+	/*#if PL_CONFIG_HAS_KEYS
+		#if PL_CONFIG_HAS_DEBOUNCE
+		  KEYDBNC_Process();
+		#else
+		  KEY_Scan();
+		#endif
+	#endif
+	#if PL_CONFIG_HAS_EVENTS
+		EVNT_HandleEvent(APP_EventHandler, TRUE);
+	#endif*/
     /* \todo handle your application code here */
-    //FRTOS1_vTaskDelay(pdMS_TO_TICKS(500));
+    FRTOS1_vTaskDelay(pdMS_TO_TICKS(1000));
   }
 }
 
@@ -36,6 +48,9 @@ void RTOS_Init(void) {
   /*! \todo Create tasks here */
   if (FRTOS1_xTaskCreate(AppTask, (signed portCHAR *)"App1", configMINIMAL_STACK_SIZE, (void*)&led1, tskIDLE_PRIORITY, NULL) != pdPASS) {
     for(;;){} /* error case only, stay here! */
+  }
+  if (FRTOS1_xTaskCreate(AppTask, (signed portCHAR *)"App2", configMINIMAL_STACK_SIZE, (void*)&led2, tskIDLE_PRIORITY, NULL) != pdPASS) {
+      for(;;){} /* error case only, stay here! */
   }
 }
 
