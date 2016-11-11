@@ -1,11 +1,11 @@
 /* ###################################################################
 **     Filename    : Events.c
-**     Project     : Remote
+**     Project     : INTRO_Remote_Master
 **     Processor   : MK20DX128VFT5
 **     Component   : Events
 **     Version     : Driver 01.00
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2016-09-30, 13:16, # CodeGen: 0
+**     Date/Time   : 2016-09-20, 21:05, # CodeGen: 0
 **     Abstract    :
 **         This is user's event module.
 **         Put your event handler code here.
@@ -28,6 +28,7 @@
 
 #include "Cpu.h"
 #include "Events.h"
+#include "Platform.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -70,7 +71,54 @@ void Cpu_OnNMIINT(void)
 */
 void TI1_OnInterrupt(void)
 {
+  /* Write your code here ... */
+#if PL_CONFIG_HAS_TIMER
 	TMR_OnInterrupt();
+#endif
+#if PL_CONFIG_HAS_TRIGGER
+  TRG_AddTick();
+#endif
+}
+
+/*
+** ===================================================================
+**     Event       :  FRTOS1_vApplicationStackOverflowHook (module Events)
+**
+**     Component   :  FRTOS1 [FreeRTOS]
+**     Description :
+**         if enabled, this hook will be called in case of a stack
+**         overflow.
+**     Parameters  :
+**         NAME            - DESCRIPTION
+**         pxTask          - Task handle
+**       * pcTaskName      - Pointer to task name
+**     Returns     : Nothing
+** ===================================================================
+*/
+
+
+/*
+** ===================================================================
+**     Event       :  FRTOS1_vApplicationMallocFailedHook (module Events)
+**
+**     Component   :  FRTOS1 [FreeRTOS]
+**     Description :
+**         If enabled, the RTOS will call this hook in case memory
+**         allocation failed.
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
+void FRTOS1_vApplicationMallocFailedHook(void)
+{
+  /* Called if a call to pvPortMalloc() fails because there is insufficient
+     free memory available in the FreeRTOS heap.  pvPortMalloc() is called
+     internally by FreeRTOS API functions that create tasks, queues, software
+     timers, and semaphores.  The size of the FreeRTOS heap is set by the
+     configTOTAL_HEAP_SIZE configuration constant in FreeRTOSConfig.h. */
+  taskDISABLE_INTERRUPTS();
+  /* Write your code here ... */
+  for(;;) {}
 }
 
 /*
@@ -136,30 +184,6 @@ void FRTOS1_vApplicationIdleHook(void)
   /* Called whenever the RTOS is idle (from the IDLE task).
      Here would be a good place to put the CPU into low power mode. */
   /* Write your code here ... */
-}
-
-/*
-** ===================================================================
-**     Event       :  FRTOS1_vApplicationMallocFailedHook (module Events)
-**
-**     Component   :  FRTOS1 [FreeRTOS]
-**     Description :
-**         If enabled, the RTOS will call this hook in case memory
-**         allocation failed.
-**     Parameters  : None
-**     Returns     : Nothing
-** ===================================================================
-*/
-void FRTOS1_vApplicationMallocFailedHook(void)
-{
-  /* Called if a call to pvPortMalloc() fails because there is insufficient
-     free memory available in the FreeRTOS heap.  pvPortMalloc() is called
-     internally by FreeRTOS API functions that create tasks, queues, software
-     timers, and semaphores.  The size of the FreeRTOS heap is set by the
-     configTOTAL_HEAP_SIZE configuration constant in FreeRTOSConfig.h. */
-  taskDISABLE_INTERRUPTS();
-  /* Write your code here ... */
-  for(;;) {}
 }
 
 /* END Events */
