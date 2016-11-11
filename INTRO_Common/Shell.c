@@ -306,13 +306,18 @@ static void ShellTask(void *pvParameters) {
 #if PL_CONFIG_SQUEUE_SINGLE_CHAR
     {
         /*! \todo Handle shell queue */
+        unsigned char ch;
+
+        while((ch=SQUEUE_ReceiveChar()) && ch!='\0') {
+          SHELL_GetStdio()->stdOut(ch);
+        }
     }
 #else /* PL_CONFIG_SQUEUE_SINGLE_CHAR */
     {
       const unsigned char *msg;
 
       msg = SQUEUE_ReceiveMessage();
-      if (msg!=NULL) {
+      if (msg!=NULL) {hb
         CLS1_SendStr(msg, CLS1_GetStdio()->stdOut);
         FRTOS1_vPortFree((void*)msg);
       }
