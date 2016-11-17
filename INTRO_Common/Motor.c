@@ -97,7 +97,7 @@ void MOT_ChangeSpeedPercent(MOT_MotorDevice *motor, MOT_SpeedPercent relPercent)
 }
 
 void MOT_SetDirection(MOT_MotorDevice *motor, MOT_Direction dir) {
-  if (dir==MOT_DIR_FORWARD ) {
+	if (dir==MOT_DIR_FORWARD ) {
 #if MOTOR_HAS_INVERT
     motor->DirPutVal(motor->inverted?0:1);
 #else
@@ -210,7 +210,7 @@ void MOT_Deinit(void) {
 
 void MOT_Init(void) {
 #if MOTOR_HAS_INVERT
-  motorL.inverted = FALSE;
+  motorL.inverted = TRUE;
   motorR.inverted = FALSE;
 #endif
   motorL.DirPutVal = DirLPutVal;
