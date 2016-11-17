@@ -317,7 +317,7 @@ static void ShellTask(void *pvParameters) {
       const unsigned char *msg;
 
       msg = SQUEUE_ReceiveMessage();
-      if (msg!=NULL) {hb
+      if (msg!=NULL) {
         CLS1_SendStr(msg, CLS1_GetStdio()->stdOut);
         FRTOS1_vPortFree((void*)msg);
       }
