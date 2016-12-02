@@ -92,8 +92,12 @@ static void StateMachine(void) {
     case STATE_FOLLOW_SEGMENT:
       if (!FollowSegment()) {
     #if PL_CONFIG_HAS_LINE_MAZE
-        LF_currState = STATE_TURN; /* make turn */
-        SHELL_SendString((unsigned char*)"no line, turn..\r\n");
+    	  if(REF_GetLineKind() == REF_LINE_NONE) {
+    		  LF_currState = STATE_TURN; /* make turn */
+    	      SHELL_SendString((unsigned char*)"no line, turn..\r\n");
+    	  } else if(REF_GetLineKind() == REF_LINE_FULL) {
+    		  LF_currState = STATE_FINISHED; /* make finish */
+    	  }
     #else
         LF_currState = STATE_STOP; /* stop if we do not have a line any more */
         SHELL_SendString((unsigned char*)"No line, stopped!\r\n");
@@ -104,12 +108,19 @@ static void StateMachine(void) {
     case STATE_TURN:
       #if PL_CONFIG_HAS_LINE_MAZE
       /*! \todo Handle maze turning */
+      TURN_Turn(TURN_RIGHT180,NULL);
+      while(!DRV_HasTurned());
+      DRV_SetMode(DRV_MODE_NONE);
+      //PID_Start();
+      LF_currState = STATE_FOLLOW_SEGMENT;
       #endif /* PL_CONFIG_HAS_LINE_MAZE */
       break;
 
     case STATE_FINISHED:
       #if PL_CONFIG_HAS_LINE_MAZE
       /*! \todo Handle maze finished */
+    	TURN_Turn(TURN_STOP, NULL);
+    	LF_currState = STATE_IDLE;
       #endif /* PL_CONFIG_HAS_LINE_MAZE */
       break;
     case STATE_STOP:
