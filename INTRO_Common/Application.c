@@ -15,6 +15,10 @@
 #include "Keys.h"
 #include "KeyDebounce.h"
 #include "KIN1.h"
+#include "RNet_AppConfig.h"
+#include  "RPHY.h"
+#include "RApp.h"
+#include "LineFollow.h"
 #if PL_CONFIG_HAS_SHELL
   #include "CLS1.h"
 #endif
@@ -58,12 +62,18 @@ void APP_EventHandler(EVNT_Handle event) {
   #if PL_CONFIG_NOF_KEYS>=1
   case EVNT_SW1_PRESSED:
     LED1_Neg();
-    //LF_StartStopFollowing();
+	#ifdef PL_CONFIG_HAS_LINE_FOLLOW
+    	LF_StartStopFollowing();
+	#endif
     CLS1_SendStr("SW1 pressed\r\n", CLS1_GetStdio()->stdOut);
-    SHELL_SendString("SW1 pressed\r\n");
-    #if PL_CONFIG_HAS_BUZZER
-    BUZ_PlayTune(BUZ_TUNE_BUTTON);
-    #endif
+	#if PL_CONFIG_HAS_BUZZER
+    	BUZ_PlayTune(BUZ_TUNE_BUTTON);
+	#endif
+    break;
+  #endif
+  #if PL_CONFIG_NOF_KEYS>=2
+  case EVNT_SW7_PRESSED:
+	  (void)RAPP_SendPayloadDataBlock('G', 1, RAPP_MSG_TYPE_JOYSTICK_BTN, RNETA_GetDestAddr(), RPHY_PACKET_FLAGS_REQ_ACK);
     break;
   #endif
 #endif /* PL_CONFIG_HAS_KEYS */
