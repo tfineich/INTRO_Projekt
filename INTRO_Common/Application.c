@@ -62,7 +62,7 @@ void APP_EventHandler(EVNT_Handle event) {
   #if PL_CONFIG_NOF_KEYS>=1
   case EVNT_SW1_PRESSED:
     LED1_Neg();
-	#ifdef PL_CONFIG_HAS_LINE_FOLLOW
+	#if PL_CONFIG_HAS_LINE_FOLLOW
     	LF_StartStopFollowing();
 	#endif
     CLS1_SendStr("SW1 pressed\r\n", CLS1_GetStdio()->stdOut);
