@@ -42,9 +42,12 @@
 #if PL_CONFIG_BOARD_IS_ROBO_V2
   #include "PORT_PDD.h"
 #endif
+#include "LCDMenu.h"
 
 #if PL_CONFIG_HAS_EVENTS
 void APP_EventHandler(EVNT_Handle event) {
+	const LCDMenu_MenuItem *item;
+
   switch(event) {
   case EVNT_STARTUP:
     LED1_On(); /* just do something */
@@ -63,7 +66,10 @@ void APP_EventHandler(EVNT_Handle event) {
   case EVNT_SW1_PRESSED:
     LED1_Neg();
 	#ifdef PL_CONFIG_HAS_LINE_FOLLOW
-    	LF_StartStopFollowing();
+    	//LF_StartStopFollowing();
+	#endif
+	#if PL_CONFIG_HAS_REMOTE
+    	LCDMenu_OnEvent(LCDMENU_EVENT_RIGHT,item);
 	#endif
     CLS1_SendStr("SW1 pressed\r\n", CLS1_GetStdio()->stdOut);
 	#if PL_CONFIG_HAS_BUZZER
@@ -74,7 +80,35 @@ void APP_EventHandler(EVNT_Handle event) {
   #if PL_CONFIG_NOF_KEYS>=2
   case EVNT_SW7_PRESSED:
 	  (void)RAPP_SendPayloadDataBlock('G', 1, RAPP_MSG_TYPE_JOYSTICK_BTN, RNETA_GetDestAddr(), RPHY_PACKET_FLAGS_REQ_ACK);
-    break;
+  break;
+  #endif
+#if PL_CONFIG_NOF_KEYS>=6
+  case EVNT_SW2_PRESSED:
+	#if PL_CONFIG_HAS_REMOTE
+	  CLS1_SendStr("SW2 pressed\r\n", CLS1_GetStdio()->stdOut); //for Remote
+	  LCDMenu_OnEvent(LCDMENU_EVENT_LEFT,item);
+	#endif
+  break;
+  case EVNT_SW3_PRESSED:
+	#if PL_CONFIG_HAS_REMOTE
+  	  CLS1_SendStr("SW3 pressed\r\n", CLS1_GetStdio()->stdOut); //for Remote
+  	  LCDMenu_OnEvent(LCDMENU_EVENT_DOWN,item);
+	#endif
+  break;
+  case EVNT_SW4_PRESSED:
+	#if PL_CONFIG_HAS_REMOTE
+      CLS1_SendStr("SW4 pressed\r\n", CLS1_GetStdio()->stdOut); //for Remote
+      LCDMenu_OnEvent(LCDMENU_EVENT_ENTER,item);
+	#endif
+   break;
+   case EVNT_SW5_PRESSED:
+	#if PL_CONFIG_HAS_REMOTE
+  	  CLS1_SendStr("SW5 pressed\r\n", CLS1_GetStdio()->stdOut); //for Remote
+  	  LCDMenu_OnEvent(LCDMENU_EVENT_UP,item);
+	#endif
+   break;
+   case EVNT_SW6_PRESSED:
+   break;
   #endif
 #endif /* PL_CONFIG_HAS_KEYS */
 
