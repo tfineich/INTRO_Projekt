@@ -26,7 +26,11 @@
   #include "Remote.h"
 #endif
 
-static RNWK_ShortAddrType APP_dstAddr = 0x02; /* destination node address */
+#if PL_CONFIG_BOARD_IS_ROBO
+	static RNWK_ShortAddrType APP_dstAddr = 0x02; /* destination node address */
+#else
+static RNWK_ShortAddrType APP_dstAddr = 0x01; /* destination node address */
+#endif
 
 typedef enum {
   RNETA_NONE,
@@ -122,7 +126,11 @@ static void Process(void) {
 }
 
 static void Init(void) {
+#if PL_CONFIG_BOARD_IS_ROBO
   if (RAPP_SetThisNodeAddr(0x01)!=ERR_OK) { /* set a default address */
+#else
+  if (RAPP_SetThisNodeAddr(0x02)!=ERR_OK) { /* set a default address */
+#endif
     //APP_DebugPrint((unsigned char*)"ERR: Failed setting node address\r\n");
   }
 }
