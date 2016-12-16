@@ -46,6 +46,7 @@
 
 #if PL_CONFIG_HAS_EVENTS
 void APP_EventHandler(EVNT_Handle event) {
+	uint8_t line;
 #if PL_CONFIG_CONTROL_SENDER
 	const LCDMenu_MenuItem *item;
 #endif
@@ -80,7 +81,7 @@ void APP_EventHandler(EVNT_Handle event) {
   #endif
   #if PL_CONFIG_NOF_KEYS>=2
   case EVNT_SW7_PRESSED:
-	  (void)RAPP_SendPayloadDataBlock('G', 1, RAPP_MSG_TYPE_JOYSTICK_BTN, RNETA_GetDestAddr(), RPHY_PACKET_FLAGS_REQ_ACK);
+	  //(void)RAPP_SendPayloadDataBlock('G', 1, RAPP_MSG_TYPE_JOYSTICK_BTN, RNETA_GetDestAddr(), RPHY_PACKET_FLAGS_REQ_ACK);
   break;
   #endif
 #if PL_CONFIG_NOF_KEYS>=6
@@ -109,6 +110,10 @@ void APP_EventHandler(EVNT_Handle event) {
 	#endif
    break;
    case EVNT_SW6_PRESSED:
+	#if PL_CONFIG_HAS_REMOTE
+	   line = 'L';
+	  (void)RAPP_SendPayloadDataBlock(&line, 1, RAPP_MSG_TYPE_JOYSTICK_BTN, RNETA_GetDestAddr(), RPHY_PACKET_FLAGS_REQ_ACK);
+	#endif
    break;
   #endif
 #endif /* PL_CONFIG_HAS_KEYS */
