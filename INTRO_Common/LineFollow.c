@@ -30,6 +30,9 @@
 #if PL_CONFIG_HAS_LINE_MAZE
   #include "Maze.h"
 #endif
+#if PL_CONFIG_HAS_REMOTE
+  #include "Remote.h"
+#endif
 
 typedef enum {
   STATE_IDLE,              /* idle, not doing anything */
@@ -119,6 +122,7 @@ static void StateMachine(void) {
     case STATE_FINISHED:
       #if PL_CONFIG_HAS_LINE_MAZE
       /*! \todo Handle maze finished */
+    	REMOTE_EndParcour();
     	TURN_Turn(TURN_STOP, NULL);
     	LF_currState = STATE_IDLE;
       #endif /* PL_CONFIG_HAS_LINE_MAZE */

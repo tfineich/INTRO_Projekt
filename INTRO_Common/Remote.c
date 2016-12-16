@@ -42,6 +42,9 @@
 #if PL_CONFIG_HAS_SHELL
   #include "Shell.h"
 #endif
+#if PL_CONFIG_HAS_LINE_FOLLOW
+  #include "LineFollow.h"
+#endif
 
 static bool REMOTE_isOn = FALSE;
 static bool REMOTE_isVerbose = FALSE;
@@ -215,6 +218,7 @@ static void REMOTE_HandleMotorMsg(int16_t speedVal, int16_t directionVal, int16_
 #endif
   } else if (speedVal>100 || speedVal<-100) { /* speed */
 #if PL_CONFIG_HAS_DRIVE
+	speedVal*=3;
     DRV_SetSpeed(speedVal, speedVal);
 #else
     MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_LEFT), -speedVal/SCALE_DOWN);
@@ -260,6 +264,7 @@ static int16_t scaleJoystickTo1K(int8_t val) {
 uint8_t REMOTE_HandleRemoteRxMessage(RAPP_MSG_Type type, uint8_t size, uint8_t *data, RNWK_ShortAddrType srcAddr, bool *handled, RPHY_PacketDesc *packet) {
 #if PL_CONFIG_HAS_SHELL
   uint8_t buf[48];
+  uint8_t cmd[2];
 #endif
   uint8_t val;
   int16_t x, y, z;
@@ -320,9 +325,16 @@ uint8_t REMOTE_HandleRemoteRxMessage(RAPP_MSG_Type type, uint8_t size, uint8_t *
         //SHELL_ParseCmd((unsigned char*)"buzzer buz 300 1000");
         REMOTE_SetOnOff(TRUE);
         DRV_SetMode(DRV_MODE_SPEED);
+        cmd[0]=14;
+        cmd[1]='A';
+        RAPP_SendPayloadDataBlock(cmd, sizeof(cmd), RAPP_MSG_TYPE_TIME_MEASURE, 0x12, RPHY_PACKET_FLAGS_REQ_ACK);
         SHELL_SendString("Remote ON\r\n");
-      } else if (val=='C') { /* red 'C' button */
-        /*! \todo add functionality */
+      } else if (val=='L') { /* red 'C' button */
+    	  cmd[0]=14;
+    	  cmd[1]='B';
+    	  RAPP_SendPayloadDataBlock(cmd, sizeof(cmd), RAPP_MSG_TYPE_TIME_MEASURE, 0x12, RPHY_PACKET_FLAGS_REQ_ACK);
+    	  REMOTE_SetOnOff(FALSE);
+    	  LF_StartStopFollowing();
       } else if (val=='A') { /* green 'A' button */
         /*! \todo add functionality */
       }
@@ -425,6 +437,13 @@ void REMOTE_SetOnOff(bool on) {
 
 void REMOTE_Deinit(void) {
   /* nothing to do */
+}
+
+void REMOTE_EndParcour(void) {
+	uint8_t cmd[2];
+	cmd[0]=14;
+	cmd[1]='C';
+	RAPP_SendPayloadDataBlock(cmd, sizeof(cmd), RAPP_MSG_TYPE_TIME_MEASURE, 0x12, RPHY_PACKET_FLAGS_REQ_ACK);
 }
 
 /*! \brief Initializes module */

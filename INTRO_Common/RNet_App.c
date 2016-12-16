@@ -26,7 +26,7 @@
   #include "Remote.h"
 #endif
 
-static RNWK_ShortAddrType APP_dstAddr = RNWK_ADDR_BROADCAST; /* destination node address */
+static RNWK_ShortAddrType APP_dstAddr = 0x02; /* destination node address */
 
 typedef enum {
   RNETA_NONE,
@@ -122,7 +122,7 @@ static void Process(void) {
 }
 
 static void Init(void) {
-  if (RAPP_SetThisNodeAddr(RNWK_ADDR_BROADCAST)!=ERR_OK) { /* set a default address */
+  if (RAPP_SetThisNodeAddr(0x01)!=ERR_OK) { /* set a default address */
     //APP_DebugPrint((unsigned char*)"ERR: Failed setting node address\r\n");
   }
 }

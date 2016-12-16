@@ -67,7 +67,7 @@ void APP_EventHandler(EVNT_Handle event) {
   case EVNT_SW1_PRESSED:
     LED1_Neg();
 	#ifdef PL_CONFIG_HAS_LINE_FOLLOW
-    	//LF_StartStopFollowing();
+    	REF_CalibrateStartStop();
 	#endif
 	#if PL_CONFIG_CONTROL_SENDER
     	LCDMenu_OnEvent(LCDMENU_EVENT_RIGHT,item);
