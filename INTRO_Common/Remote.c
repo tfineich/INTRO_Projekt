@@ -13,6 +13,13 @@
 #include "CLS1.h"
 #include "UTIL1.h"
 #include "Shell.h"
+#include "SW1.h"
+#if PL_CONFIG_NOF_KEYS>=2
+#include "SW2.h"
+#include "SW3.h"
+#include "SW4.h"
+#include "SW5.h"
+#endif
 #if PL_CONFIG_HAS_PID
   #include "PID.h"
 #endif
@@ -29,7 +36,7 @@
 #if PL_CONFIG_HAS_LEDS
   #include "LED.h"
 #endif
-#if PL_CONFIG_HAS_JOYSTICK
+#if PL_CONFIG_HAS_JOYSTICK && PL_CONFIG_BOARD_IS_FRDM
   #include "AD1.h"
 #endif
 #if PL_CONFIG_HAS_SHELL
@@ -69,7 +76,7 @@ static int8_t ToSigned8Bit(uint16_t val, bool isX) {
 static uint8_t REMOTE_GetXY(uint16_t *x, uint16_t *y, int8_t *x8, int8_t *y8) {
   uint8_t res;
   uint16_t values[2];
-
+#if PL_CONFIG_BOARD_IS_FRDM
   res = AD1_Measure(TRUE);
   if (res!=ERR_OK) {
     return res;
@@ -91,6 +98,7 @@ static uint8_t REMOTE_GetXY(uint16_t *x, uint16_t *y, int8_t *x8, int8_t *y8) {
   if (y8!=NULL) {
     *y8 = ToSigned8Bit(values[1], FALSE);
   }
+#endif
   return ERR_OK;
 }
 
@@ -109,9 +117,33 @@ static void RemoteTask (void *pvParameters) {
         int8_t x8, y8;
 
         /* send periodically messages */
+#if PL_CONFIG_BOARD_IS_FRDM
         REMOTE_GetXY(&x, &y, &x8, &y8);
         buf[0] = x8;
         buf[1] = y8;
+#else
+        if(!SW1_GetVal()) {
+        	buf[0] = 127;
+        	buf[1] = 0;
+        } else if(!SW2_GetVal()) {
+        	buf[0] = -127;
+        	buf[1] = 0;
+        } else if(!SW3_GetVal()) {
+        	buf[0] = 0;
+        	buf[1] = -127;
+        } else if(!SW5_GetVal()) {
+        	buf[0] = 0;
+        	buf[1] = 127;
+        } else if(!SW4_GetVal()) {
+        	uint8_t sw='G';
+        	 (void)RAPP_SendPayloadDataBlock(&sw, sizeof(sw), RAPP_MSG_TYPE_JOYSTICK_BTN, RNETA_GetDestAddr(), RPHY_PACKET_FLAGS_REQ_ACK);
+        	buf[0] = 0;
+        	buf[1] = 0;
+        } else {
+        	buf[0] = 0;
+        	buf[1] = 0;
+        }
+#endif
         if (REMOTE_isVerbose) {
           uint8_t txtBuf[48];
 

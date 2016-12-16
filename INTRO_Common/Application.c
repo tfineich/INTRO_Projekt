@@ -46,8 +46,9 @@
 
 #if PL_CONFIG_HAS_EVENTS
 void APP_EventHandler(EVNT_Handle event) {
+#if PL_CONFIG_CONTROL_SENDER
 	const LCDMenu_MenuItem *item;
-
+#endif
   switch(event) {
   case EVNT_STARTUP:
     LED1_On(); /* just do something */
@@ -68,7 +69,7 @@ void APP_EventHandler(EVNT_Handle event) {
 	#ifdef PL_CONFIG_HAS_LINE_FOLLOW
     	//LF_StartStopFollowing();
 	#endif
-	#if PL_CONFIG_HAS_REMOTE
+	#if PL_CONFIG_CONTROL_SENDER
     	LCDMenu_OnEvent(LCDMENU_EVENT_RIGHT,item);
 	#endif
     CLS1_SendStr("SW1 pressed\r\n", CLS1_GetStdio()->stdOut);
