@@ -19,6 +19,8 @@
 #include "SW3.h"
 #include "SW4.h"
 #include "SW5.h"
+#include "SW6.h"
+#include "SW7.h"
 #endif
 #if PL_CONFIG_HAS_PID
   #include "PID.h"
@@ -125,25 +127,28 @@ static void RemoteTask (void *pvParameters) {
         buf[0] = x8;
         buf[1] = y8;
 #else
-        if(!SW1_GetVal()) {
-        	buf[0] = 127;
-        	buf[1] = 0;
-        } else if(!SW2_GetVal()) {
-        	buf[0] = -127;
-        	buf[1] = 0;
-        } else if(!SW3_GetVal()) {
-        	buf[0] = 0;
-        	buf[1] = -127;
-        } else if(!SW5_GetVal()) {
-        	buf[0] = 0;
+        if(!SW7_GetVal()) {
         	buf[1] = 127;
-        } else if(!SW4_GetVal()) {
+        } else if(!SW6_GetVal()) {
+        	buf[1] = -127;
+        }
+        if(!SW2_GetVal()) {
+        	buf[0] = -120;
+        } else if(!SW1_GetVal()) {
+        	buf[0] = 120;
+        }
+
+        if(!SW4_GetVal()) {
         	uint8_t sw='G';
         	 (void)RAPP_SendPayloadDataBlock(&sw, sizeof(sw), RAPP_MSG_TYPE_JOYSTICK_BTN, RNETA_GetDestAddr(), RPHY_PACKET_FLAGS_REQ_ACK);
         	buf[0] = 0;
         	buf[1] = 0;
-        } else {
+        }
+
+        if(SW1_GetVal()&&SW2_GetVal()) {
         	buf[0] = 0;
+        }
+        if(SW6_GetVal()&&SW7_GetVal()) {
         	buf[1] = 0;
         }
 #endif
@@ -226,6 +231,7 @@ static void REMOTE_HandleMotorMsg(int16_t speedVal, int16_t directionVal, int16_
 #endif
   } else if (directionVal>100 || directionVal<-100) { /* direction */
 #if PL_CONFIG_HAS_DRIVE
+	directionVal*2;
     DRV_SetSpeed(directionVal/DRIVE_DOWN, -directionVal/DRIVE_DOWN);
 #else
     MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_LEFT), -directionVal/SCALE_DOWN);

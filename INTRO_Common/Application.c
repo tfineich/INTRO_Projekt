@@ -67,7 +67,7 @@ void APP_EventHandler(EVNT_Handle event) {
   #if PL_CONFIG_NOF_KEYS>=1
   case EVNT_SW1_PRESSED:
     LED1_Neg();
-	#ifdef PL_CONFIG_HAS_LINE_FOLLOW
+	#if PL_CONFIG_HAS_LINE_FOLLOW
     	REF_CalibrateStartStop();
 	#endif
 	#if PL_CONFIG_CONTROL_SENDER
@@ -105,15 +105,16 @@ void APP_EventHandler(EVNT_Handle event) {
    break;
    case EVNT_SW5_PRESSED:
 	#if PL_CONFIG_HAS_REMOTE
+	#if PL_CONFIG_HAS_REMOTE
+	   line = 'L';
+	  (void)RAPP_SendPayloadDataBlock(&line, 1, RAPP_MSG_TYPE_JOYSTICK_BTN, RNETA_GetDestAddr(), RPHY_PACKET_FLAGS_REQ_ACK);
+	#endif
   	  CLS1_SendStr("SW5 pressed\r\n", CLS1_GetStdio()->stdOut); //for Remote
   	  LCDMenu_OnEvent(LCDMENU_EVENT_UP,item);
 	#endif
    break;
    case EVNT_SW6_PRESSED:
-	#if PL_CONFIG_HAS_REMOTE
-	   line = 'L';
-	  (void)RAPP_SendPayloadDataBlock(&line, 1, RAPP_MSG_TYPE_JOYSTICK_BTN, RNETA_GetDestAddr(), RPHY_PACKET_FLAGS_REQ_ACK);
-	#endif
+
    break;
   #endif
 #endif /* PL_CONFIG_HAS_KEYS */
