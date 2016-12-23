@@ -336,12 +336,12 @@ uint8_t REMOTE_HandleRemoteRxMessage(RAPP_MSG_Type type, uint8_t size, uint8_t *
         //SHELL_ParseCmd((unsigned char*)"buzzer buz 300 1000");
         REMOTE_SetOnOff(TRUE);
         DRV_SetMode(DRV_MODE_SPEED);
-        cmd[0]=14;
+        cmd[0]=4;
         cmd[1]='A';
         RAPP_SendPayloadDataBlock(cmd, sizeof(cmd), RAPP_MSG_TYPE_TIME_MEASURE, 0x12, RPHY_PACKET_FLAGS_REQ_ACK);
         SHELL_SendString("Remote ON\r\n");
       } else if (val=='L') { /* red 'C' button */
-    	  cmd[0]=14;
+    	  cmd[0]=4;
     	  cmd[1]='B';
     	  RAPP_SendPayloadDataBlock(cmd, sizeof(cmd), RAPP_MSG_TYPE_TIME_MEASURE, 0x12, RPHY_PACKET_FLAGS_REQ_ACK);
     	  REMOTE_SetOnOff(FALSE);
@@ -452,7 +452,7 @@ void REMOTE_Deinit(void) {
 
 void REMOTE_EndParcour(void) {
 	uint8_t cmd[2];
-	cmd[0]=14;
+	cmd[0]=4;
 	cmd[1]='C';
 	RAPP_SendPayloadDataBlock(cmd, sizeof(cmd), RAPP_MSG_TYPE_TIME_MEASURE, 0x12, RPHY_PACKET_FLAGS_REQ_ACK);
 }
