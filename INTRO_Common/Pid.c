@@ -455,11 +455,11 @@ void PID_Init(void) {
   speedRightConfig.lastError = 0;
   speedRightConfig.integral = 0;
 
-  lineFwConfig.pFactor100 = 400;
-  lineFwConfig.iFactor100 = 80;
+  lineFwConfig.pFactor100 = 300;
+  lineFwConfig.iFactor100 = 40;
   lineFwConfig.dFactor100 = 0;
   lineFwConfig.iAntiWindup = 10000;
-  lineFwConfig.maxSpeedPercent = 30;
+  lineFwConfig.maxSpeedPercent = 40;
   lineFwConfig.lastError = 0;
   lineFwConfig.integral = 0;
 

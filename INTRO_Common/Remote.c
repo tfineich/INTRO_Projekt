@@ -117,7 +117,7 @@ static void RemoteTask (void *pvParameters) {
     if (REMOTE_isOn) {
 #if PL_CONFIG_HAS_JOYSTICK
       if (REMOTE_useJoystick) {
-        uint8_t buf[2];
+        int8_t buf[2];
         int16_t x, y;
         int8_t x8, y8;
 
@@ -150,6 +150,11 @@ static void RemoteTask (void *pvParameters) {
         }
         if(SW6_GetVal()&&SW7_GetVal()) {
         	buf[1] = 0;
+        	if(buf[0]==120) {
+        		buf[0]=60;
+        	} else if(buf[0]==-120) {
+        		buf[0]=-60;
+        	}
         }
 #endif
         if (REMOTE_isVerbose) {
@@ -223,7 +228,7 @@ static void REMOTE_HandleMotorMsg(int16_t speedVal, int16_t directionVal, int16_
 #endif
   } else if (speedVal>100 || speedVal<-100) { /* speed */
 #if PL_CONFIG_HAS_DRIVE
-	speedVal*=3;
+	//speedVal*=3;
     DRV_SetSpeed(speedVal, speedVal);
 #else
     MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_LEFT), -speedVal/SCALE_DOWN);
@@ -231,7 +236,7 @@ static void REMOTE_HandleMotorMsg(int16_t speedVal, int16_t directionVal, int16_
 #endif
   } else if (directionVal>100 || directionVal<-100) { /* direction */
 #if PL_CONFIG_HAS_DRIVE
-	directionVal*2;
+	//directionVal*2;
     DRV_SetSpeed(directionVal/DRIVE_DOWN, -directionVal/DRIVE_DOWN);
 #else
     MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_LEFT), -directionVal/SCALE_DOWN);
@@ -254,14 +259,14 @@ static int16_t scaleJoystickTo1K(int8_t val) {
   int tmp;
 
   if (val>0) {
-    tmp = ((val*10)/127)*100;
+    tmp = ((val*10)/127)*300;//400
   } else {
-    tmp = ((val*10)/128)*100;
+    tmp = ((val*10)/128)*300;
   }
-  if (tmp<-1000) {
-    tmp = -1000;
-  } else if (tmp>1000) {
-    tmp = 1000;
+  if (tmp<-3000) {
+    tmp = -3000;
+  } else if (tmp>3000) {
+    tmp = 3000;
   }
   return tmp;
 }
